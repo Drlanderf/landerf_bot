@@ -24,13 +24,13 @@ let MyLeavingMessage04 = " est parti en quête d'aventure, on ne l'a plus jamais
 var welcomeCanvas = {};
 welcomeCanvas.create = Canvas.createCanvas(1024,500);
 welcomeCanvas.context = welcomeCanvas.create.getContext("2d");
-welcomeCanvas.context.font = "72px sans-serif";
+welcomeCanvas.context.font = "68px sans-serif";
 welcomeCanvas.context.fillStyle = "#ffffff";
 Canvas.loadImage("./img/bg.png").then(async (img) => {
     welcomeCanvas.context.drawImage(img,0,0,1024,500);
-    welcomeCanvas.context.fillText("Bienvenue", 360,360);
+    welcomeCanvas.context.fillText("Bienvenue", 350,75);
     welcomeCanvas.context.beginPath();
-    welcomeCanvas.context.arc(512,166,128,0, Math.PI * 2, true);
+    welcomeCanvas.context.arc(512,245,128,0, Math.PI * 2, true);
     welcomeCanvas.context.stroke();
     welcomeCanvas.context.fill();
 })
@@ -59,15 +59,15 @@ client.on("guildMemberAdd", async member => {
     let canvas = welcomeCanvas;
     canvas.context.font = "42px sans-serif";
     canvas.context.textAlign = "center";
-    canvas.context.fillText(member.user.tag.toUpperCase(),512,410);
-    canvas.context.font = "32px sans-serif";
-    canvas.context.fillText(`Tu es le ${member.guild.memberCount}e membres`, 512,455);
+    canvas.context.fillText(member.user.tag.toUpperCase(),512,425);
+    canvas.context.font = "28px sans-serif";
+    canvas.context.fillText(`Tu es le ${member.guild.memberCount}e membres`, 512,475);
     canvas.context.beginPath();
-    canvas.context.arc(512,166,119,0,Math.PI * 2, true);
+    canvas.context.arc(512,245,119,0,Math.PI * 2, true);
     canvas.context.closePath();
     canvas.context.clip();
     await Canvas.loadImage(member.user.displayAvatarURL({size: 1024,format:'png'})).then(img => {
-        canvas.context.drawImage(img, 393,47,238,238);
+        canvas.context.drawImage(img, 393,125,238,238);
     })
     let Attachment = new Discord.AttachmentBuilder(canvas.create.toBuffer());
     Attachment.setName(`welcome-${member.id}.png`);
